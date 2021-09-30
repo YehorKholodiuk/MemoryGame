@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+const App = () => {
+  let img = ['😹', '👾', '‍💻️', '😀', '👠', '👊']
+
+  function shuffle(array) {
+    array = [...array, ...array]
+    return array.sort(() => Math.random() - 0.5);
+  }
+  let newArrayImage = shuffle(img)
+
+  let initialCards = []
+  for (let i = 0; i < newArrayImage.length; i++) {
+    initialCards.push(
+        {
+          id: Math.random(),
+          image: newArrayImage[i],
+          open: false
+        }
+    )
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        {initialCards.map(el => <li>{el.image}</li>)}
+      </div>
   );
-}
+};
 
 export default App;
